@@ -1,0 +1,57 @@
+[core]
+calendar_id = "REPLACE_WITH_AGENTCAL_CALENDAR_ID"
+owner_email = "you@example.com"
+db_path = "agentcal.db"
+artifacts_dir = "artifacts"
+poll_interval_s = 60
+missed_policy = "run_late"
+grace_s = 600
+lease_ttl_s = 90
+heartbeat_s = 15
+max_attempts = 3
+calendar_enabled = true
+default_agent = ""
+profile_wait_s = 30.0
+
+[policy]
+allowed_users = []
+allowed_chats = []
+allowed_domains = []
+max_actions_per_min_per_domain = 6
+
+[browser]
+mode = "cdp"
+cdp_endpoint = "http://127.0.0.1:9222"
+profile_dir = "profiles/main"
+
+[auth]
+client_id = ""
+client_secret = ""
+redirect_uri = "http://127.0.0.1:8765/callback"
+
+[llm]
+proxy = "http://127.0.0.1:11434"
+t_auto = 0.90
+t_ask = 0.60
+daily_cost_alert_usd = 10.0
+model_slm = "qwen2.5:3b"
+model_vision = "qwen2.5vl:7b"
+price_in_per_1k = 0.0
+price_out_per_1k = 0.0
+
+[agents.security-scan]
+domains = ["127.0.0.1", "intranet.example"]
+
+[agents.x-publisher]
+domains = ["x.com"]
+
+# 多站点：按 intent.site 或 prompt 里的域名选择规格；不写则用顶层 spec（x.com）
+# [agents.x-publisher.sites.medium]
+# compose_url = "https://medium.com/new-story"
+# text_selector = "div[contenteditable='true']"
+# publish_selector = "button[data-testid='publishButton']"
+# confirm_selector = "a[href*='/p/']"
+# max_chars = 20000
+
+[agents.blogger]
+domains = ["blogger.com", "blogspot.com"]
